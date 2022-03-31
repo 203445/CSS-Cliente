@@ -1,12 +1,5 @@
 import { useState} from "react";
 import axios from "axios";
-import React from 'react';
-//estilos
-//
-// import IconButton from '@mui/material/IconButton';
-// import PhotoCamera from '@mui/icons-material/PhotoCamera';
-
-
 
 
 const Registration = () => {
@@ -39,12 +32,19 @@ const Registration = () => {
             .catch((error) => {
                 console.log(error.response.data)
                 alert("Verifique los datos");
-                // console.log(error.response.data, pword[0])
-                // console.log(error.response.data, pword2[0])
-                // console.log(error.response.data, username[0])
-                // console.log(error.response.data, email[0])
             })
 
+    }
+    function showC() {
+        var inpt = document.getElementById("pass");
+        var inpt2 = document.getElementById("pass2");
+        if(inpt.type === "password" || inpt2.type  === "password"){
+            inpt.type = "text";
+            inpt2.type = "text";
+        }else{
+            inpt.type = "password";
+            inpt2.type = "password";
+        }
     }
     return(
         <div >
@@ -70,11 +70,15 @@ const Registration = () => {
                                 </div>
                                 <div className="group">
                                     <label htmlFor="pass" className="label">Password</label>
-                                    <input id="pass" type="password" className="input" data-type="password" name="password" onChange={e => setPword( e.target.value)}/>
+                                    <input id="pass" type="password" className="input" name="password" onChange={e => setPword( e.target.value)}/>
                                 </div>
                                 <div className="group">
                                     <label htmlFor="pass" className="label">Repeat Password</label>
-                                    <input id="pass" type="password" className="input" data-type="password" name="password2" onChange={e => setPword2( e.target.value)}/>
+                                    <input id="pass2" type="password" className="input"  name="password2" onChange={e => setPword2( e.target.value)}/>
+                                </div>
+                                <div className="group">
+                                    <input id="check" type="checkbox" className="check"  onClick={showC}/>
+                                    <label htmlFor="check"><span className="icon"></span>Ver contraseña</label>
                                 </div>
                                 <div className="group">
                                     <label htmlFor="pass" className="label">Email Address</label>

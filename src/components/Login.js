@@ -1,18 +1,10 @@
 import { useState} from "react";
 import axios from 'axios';
-import React from 'react';
-// import {Link} from  "react-router-dom";
 import "./estilo.css";
 
 const Login = () => {
     const [username, setUsername] = useState()
     const [pword, setPword] = useState()
-
-    // useEffect(() => {
-    //     localStorage.setItem('token',null);
-    //     localStorage.setItem('idus',null);
-    // }, [])// eslint-disable-line react-hooks/exhaustive-deps
-
 
     const post = (urlPostLog) => {
 
@@ -34,10 +26,18 @@ const Login = () => {
                 window.location = "/profile";
             })
             .catch((error) => {
-                console.log(error.response.data, pword[0])
-                console.log(error.response.data, username[0])
+                console.log(error.response.data, pword)
+                console.log(error.response.data, username)
                 alert("Verifica los datos");
             })
+    }
+    function showC() {
+        var inpt = document.getElementById("pass");
+        if(inpt.type === "password"){
+            inpt.type = "text";
+        }else{
+            inpt.type = "password";
+        }
     }
     // style={containerStyle}
     return(
@@ -56,19 +56,17 @@ const Login = () => {
                             </div>
                             <div className="group">
                                 <label htmlFor="pass" className="label">Password</label>
-                                <input id="pass" type="password" className="input" data-type="password" name="password" onChange={e => setPword( e.target.value)}/>
+                                <input id="pass" type="password" className="input"  name="password" onChange={e => setPword( e.target.value)}/>
                             </div>
                             <div className="group">
-                                <input id="check" type="checkbox" className="check" defaultChecked={"checked"}/>
-                                    <label htmlFor="check"><span className="icon"></span> Mantener sesión</label>
+                                <input id="check" type="checkbox" className="check" onClick={showC}/>
+                                    <label htmlFor="check"><span className="icon"></span>Ver contraseña</label>
                             </div>
                             <div className="group">
                                 <input type="submit" className="button" value="Sign In" onClick={()=>post('http://localhost:8000/api/v1/login/')}/>
                             </div>
                             <div className="hr"></div>
-                            <div className="foot-lnk">
-                                <a href="#forgot">Forgot Password?</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>

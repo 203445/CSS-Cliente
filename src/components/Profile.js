@@ -1,7 +1,6 @@
 
 import {useEffect, useState} from "react";
 import axios from "axios";
-import React from 'react';
 //Estilo
  import  "./estilo.css";
 import Button from '@material-ui/core/Button';
